@@ -3,18 +3,18 @@
 #include <vector>
 
 struct car {
-    double initial_velocity;
     double final_velocity;
     int distance;
 };
 
 double time (const car& car)  {
-    return (2.0 * car.distance) / (car.final_velocity + car.initial_velocity);
+    return (2.0 * car.distance) / (car.final_velocity);
 };
 
 int main(){
     int totalcar;
     int distance;
+    double kmh;
     std::cout << "Enter the distance of the race in meter: ";
     std::cin >> distance;
     std::cout << "Enter how many cars are in the race?: ";
@@ -23,9 +23,9 @@ int main(){
     
     for (int i= 0; i < totalcar; i++) {
      cars[i].distance = distance;
-     cars[i].initial_velocity = 0;
-     std::cout << "Enter the velocity of car" << i + 1 << " in m/s : ";
-     std::cin >> cars[i].final_velocity;
+     std::cout << "Enter the velocity of car " << i + 1 << " in km/h : ";
+     std::cin >> kmh;
+     cars[i].final_velocity = kmh * (5.0/18.0);
     }
 
     auto winner = std::min_element(
